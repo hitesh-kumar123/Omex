@@ -3,7 +3,7 @@ const aiRoutes = require('./routes/ai.routes')
 const cors = require('cors')
 
 const app = express()
-
+// const url=process.env.URL
 app.use(cors())
 
 
