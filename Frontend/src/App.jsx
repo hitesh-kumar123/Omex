@@ -10,8 +10,8 @@ import './App.css'
 import { FaCopy } from "react-icons/fa";
 import { MdDone } from "react-icons/md";
 import toast, { Toaster } from 'react-hot-toast'
-import Navbar from './components/navbar'
 import Loader from './components/Loader'
+import Nav from './components/Nav.jsx'
 function App() {
   const [code, setCode] = useState(`function add(a, b) {
   return a + b;}`)
@@ -64,7 +64,7 @@ function App() {
   }
   return (
     <>
-    <Navbar/>
+    <Nav/>
       <main className="h-screen pt-20 w-screen p-6 flex md:flex-row flex-col gap-6 bg-gray-700">
         <div className="left relative h-full md:w-1/2 w-full">
           <div className="code h-full w-full bg-gray-900 rounded-lg">
