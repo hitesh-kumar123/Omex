@@ -1,11 +1,15 @@
 import CodeEditor from '../components/CodeEditor.jsx'
+// import { useURL } from '../store/auth.jsx';
 function CodeOptimizer() {
-const URL="http://localhost:5000/ai/get-review"
+const URL=`${import.meta.env.VITE_BACKEND_URL}/ai/get-review`
+const prompt=
+`function add(a, b) {
+    return a + b;
+ }`
   return (
     <>
-    <div className='"mt-20 bg-green-500 '>
-      <h2>Code optimizer</h2>
-      <CodeEditor URL={URL} />
+    <div className=' '>
+      <CodeEditor URL={URL} prompt={prompt} />
       </div>  
     </>
   )

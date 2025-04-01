@@ -2,15 +2,15 @@ import React from 'react'
 import CodeEditor from '../components/CodeEditor'
 
 function CodeGenerator() {
-  const URL="http://localhost:5000/ai/get-code"
+  const URL=`${import.meta.env.VITE_BACKEND_URL}/ai/get-code`
+  const prompt=`write a c++ code to find factorial of a given number`
   return (
     <>
-    <div className='"mt-20 bg-green-500 '>
-      <h2>Code optimizer</h2>
-      <CodeEditor URL={URL} />
+    <div className=''>
+      <CodeEditor URL={URL} prompt={prompt} />
       </div>  
     </>
   )
 }
-
+// Omex 
 export default CodeGenerator

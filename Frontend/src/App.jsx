@@ -10,8 +10,10 @@ function App() {
   return (
     <>
       <Router>
-        <Nav />
-        <main className=" w-screen" >
+        <nav className="h-18 w-full fixed top-0 left-0 z-50" >
+        <Nav/>
+        </nav>
+        <main className="pt-18 bg-gray-700 min-h-screen " >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/optimiser" element={<CodeOptimizer />} />
