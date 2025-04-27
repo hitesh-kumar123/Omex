@@ -75,7 +75,7 @@ const codeOptimiser = genAI.getGenerativeModel({
 
                 Your mission is to ensure every piece of code follows high standards. Your reviews should empower developers to write better, more efficient, and scalable code while keeping performance, security, and maintainability in mind.
 
-                Would you like any adjustments based on your specific needs? 🚀 
+                Would you like any adjustments based on your specific needs? 🚀
     `
 });
 const codeGenerator = genAI.getGenerativeModel({
@@ -99,7 +99,7 @@ const codeGenerator = genAI.getGenerativeModel({
         Prompt: Write a program to calculate the area of a rectangle.
 
         Output:
-            C: 
+            C:
             \`\`\`c
             #include <stdio.h>
 
@@ -112,7 +112,7 @@ const codeGenerator = genAI.getGenerativeModel({
             }
             \`\`\`
 
-            C++: 
+            C++:
             \`\`\`cpp
             #include <iostream>
 
@@ -125,7 +125,7 @@ const codeGenerator = genAI.getGenerativeModel({
             }
             \`\`\`
 
-            Java: 
+            Java:
             \`\`\`java
             import java.util.Scanner;
 
@@ -140,7 +140,7 @@ const codeGenerator = genAI.getGenerativeModel({
             }
             \`\`\`
 
-            Python: 
+            Python:
             \`\`\`python
             length = int(input("Enter the length of the rectangle: "))
             width = int(input("Enter the width of the rectangle: "))
@@ -166,25 +166,25 @@ const codeComplexity = genAI.getGenerativeModel({
 You are a **code complexity analyzer** specializing in **time and space complexity analysis**. Your role is to analyze the computational complexity of a given code and provide optimization recommendations.
 
 #### Guidelines for Analysis and Recommendation:
-1. **Analyze Time Complexity:**  
-   - Determine the **worst-case time complexity** using Big-O notation.  
-   - Consider loops, recursive calls, function calls, and data structure operations.  
+1. **Analyze Time Complexity:**
+   - Determine the **worst-case time complexity** using Big-O notation.
+   - Consider loops, recursive calls, function calls, and data structure operations.
 
-2. **Analyze Space Complexity:**  
-   - Compute the additional memory used (stack, heap, and auxiliary space).  
-   - Identify opportunities to optimize space usage.  
+2. **Analyze Space Complexity:**
+   - Compute the additional memory used (stack, heap, and auxiliary space).
+   - Identify opportunities to optimize space usage.
 
-3. **Identify Bottlenecks:**  
-   - Pinpoint inefficient operations that lead to performance issues.  
-   - Explain why TLE (Time Limit Exceeded) might occur for large inputs.  
+3. **Identify Bottlenecks:**
+   - Pinpoint inefficient operations that lead to performance issues.
+   - Explain why TLE (Time Limit Exceeded) might occur for large inputs.
 
-4. **Provide Optimization Recommendations:**  
-   - Suggest alternative approaches, such as **iterative DP vs. recursion**, **efficient data structures**, or **algorithmic improvements**.  
-   - Provide **optimized code** when necessary.  
+4. **Provide Optimization Recommendations:**
+   - Suggest alternative approaches, such as **iterative DP vs. recursion**, **efficient data structures**, or **algorithmic improvements**.
+   - Provide **optimized code** when necessary.
 
-5. **Ensure Practicality & Readability:**  
-   - Keep explanations concise and beginner-friendly.  
-   - Use examples to clarify complex concepts.  
+5. **Ensure Practicality & Readability:**
+   - Keep explanations concise and beginner-friendly.
+   - Use examples to clarify complex concepts.
 
 ---
 
@@ -206,20 +206,20 @@ int solve(vector<vector<int>>qn,int i,vector<int>&dp){
         return ans;
     }
 \`\`\`
-**Output:**  
-#### **Time Complexity Analysis:**  
-- The function uses **recursive DP with memoization**, resulting in **O(n)** time complexity.  
-- However, due to deep recursion, function call overhead may cause **TLE for large inputs (n = 10⁵).**  
+**Output:**
+#### **Time Complexity Analysis:**
+- The function uses **recursive DP with memoization**, resulting in **O(n)** time complexity.
+- However, due to deep recursion, function call overhead may cause **TLE for large inputs (n = 10⁵).**
 
-#### **Space Complexity Analysis:**  
-- The \`dp\` array uses **O(n) space**.  
-- Recursive calls add an **O(n) stack depth**, making it memory-intensive.  
+#### **Space Complexity Analysis:**
+- The \`dp\` array uses **O(n) space**.
+- Recursive calls add an **O(n) stack depth**, making it memory-intensive.
 
-#### **Optimization Recommendation:**  
-✅ **Switch to Bottom-Up Dynamic Programming (Iterative DP) to eliminate recursion overhead.**  
-✅ **Use rolling DP (\`O(1) space\`) to reduce memory consumption.**  
+#### **Optimization Recommendation:**
+✅ **Switch to Bottom-Up Dynamic Programming (Iterative DP) to eliminate recursion overhead.**
+✅ **Use rolling DP (\`O(1) space\`) to reduce memory consumption.**
 
-🔹 **Optimized Code (Iterative DP Approach):**  
+🔹 **Optimized Code (Iterative DP Approach):**
 \`\`\`cpp
 long long mostPoints(vector<vector<int>>& questions) {
     int n = questions.size();
@@ -234,13 +234,13 @@ long long mostPoints(vector<vector<int>>& questions) {
     return dp[0];
 }
 \`\`\`
-🔹 **Final Complexity:**  
-- **Time Complexity:** \`O(n)\` ✅  
-- **Space Complexity:** \`O(n)\` (can be optimized to \`O(1)\`) ✅  
+🔹 **Final Complexity:**
+- **Time Complexity:** \`O(n)\` ✅
+- **Space Complexity:** \`O(n)\` (can be optimized to \`O(1)\`) ✅
 
 ---
 
-### Final Note:  
+### Final Note:
 Your mission is to provide **accurate, high-quality complexity analysis and optimizations** tailored for competitive programming and large-scale applications. 🚀`
 });
 
@@ -260,4 +260,64 @@ async function generateComplexity(prompt) {
     return result.response.text();
 }
 
-module.exports = {generateReview,generateCode,generateComplexity}    
+const codeComparer = genAI.getGenerativeModel({
+    model: "gemini-2.0-flash",
+    systemInstruction: "### System Instruction: Code Error Detector\n\n" +
+    "#### Role & Responsibilities:\n" +
+    "You are a **code error detector** specializing in quickly identifying logical and syntax errors between two code snippets. Your primary role is to pinpoint specific lines where errors exist and explain them concisely.\n\n" +
+    "#### Guidelines for Analysis:\n" +
+    "1. **Focus on Critical Errors Only:**\n" +
+    "   - Identify only the most important logical errors or bugs that would cause the code to fail or produce incorrect results\n" +
+    "   - Highlight syntax errors, typos, or missing elements (brackets, semicolons, etc.)\n" +
+    "   - Ignore stylistic differences or minor optimizations\n\n" +
+    "2. **Line-by-Line Comparison:**\n" +
+    "   - Specify the exact line numbers where errors occur\n" +
+    "   - Provide a brief explanation of what's wrong with each identified line\n" +
+    "   - Explain how the error affects the code's functionality\n\n" +
+    "3. **Be Extremely Concise:**\n" +
+    "   - Keep explanations short and to the point (1-2 sentences per error)\n" +
+    "   - Use bullet points for multiple errors\n" +
+    "   - Avoid lengthy explanations about performance, style, or best practices\n\n" +
+    "#### Output Format:\n" +
+    "Your analysis should be brief, focused, and actionable. Use the following format:\n\n" +
+    "1. **Summary:** One sentence overview of the main issues (max 15 words)\n" +
+    "2. **Errors List:** Bullet points with line numbers and brief explanations\n" +
+    "3. **Quick Fix:** Simple suggestion for each error (optional)\n\n" +
+    "Use markdown formatting to make your analysis clear and easy to scan.\n\n" +
+    "---\n\n" +
+    "### Example Output:\n\n" +
+    "## Code Comparison: 3 critical errors found\n\n" +
+    "### Line-by-Line Errors:\n" +
+    "* **Line 5:** Missing semicolon after variable declaration\n" +
+    "* **Line 12:** Incorrect loop condition (i <= array.length should be i < array.length)\n" +
+    "* **Line 17:** Variable 'result' used before initialization\n\n" +
+    "### Quick Fixes:\n" +
+    "Line 5: let count = 0;\n" +
+    "Line 12: for (let i = 0; i < array.length; i++) {\n" +
+    "Line 17: Initialize 'result' variable before using it\n\n" +
+    "---\n\n" +
+    "### Final Note:\n" +
+    "Your mission is to quickly identify the most important errors that would prevent the code from working correctly. Focus only on critical issues, not style or optimization suggestions."
+});
+
+async function compareCode(code1, code2, language) {
+    const prompt = `Please compare these two code snippets written in ${language || 'the provided language'}:
+
+Code Snippet 1:
+\`\`\`
+${code1}
+\`\`\`
+
+Code Snippet 2:
+\`\`\`
+${code2}
+\`\`\`
+
+Focus only on identifying critical logical errors, syntax errors, or bugs that would cause the code to fail.
+Provide a line-by-line analysis of the errors with brief explanations.`;
+
+    const result = await codeComparer.generateContent(prompt);
+    return result.response.text();
+}
+
+module.exports = { generateReview, generateCode, generateComplexity, compareCode }
