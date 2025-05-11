@@ -54,7 +54,12 @@ const upload = multer({
 
 const router = express.Router();
 
-// Route for summarizing content
+// Routes for summarizing content
+// The upload.single middleware will be skipped if no file is uploaded
 router.post('/summarize-content', upload.single('file'), mediaController.summarizeContent);
+
+// Dedicated routes for specific input types (for clarity and potential future enhancements)
+router.post('/summarize-text', mediaController.summarizeTextInput);
+router.post('/summarize-youtube', mediaController.summarizeYouTubeUrl);
 
 module.exports = router;
