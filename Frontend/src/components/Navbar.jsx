@@ -26,8 +26,10 @@ import {
   FaAlignLeft,
   FaRegBuilding,
   FaBookOpen,
-  FaTimes
+  FaTimes,
+  
 } from "react-icons/fa";
+import { IoMdAnalytics } from "react-icons/io";
 import { GoPackageDependencies } from "react-icons/go";
 import { useTheme } from "../context/ThemeContext";
 
@@ -338,7 +340,8 @@ function NavBar({ isMenuOpen, setIsMenuOpen }) {
                         { to: "/performance-analyzer", icon: FaTachometerAlt, label: "Performance Analyzer", color: "yellow" },
                         { to: "/content-summarizer", icon: FaAlignLeft, label: "Content Summarizer", color: "purple" },
                         { to: "/security-scanner", icon: FaShieldAlt, label: "Security Scanner", color: "red" },
-                        { to: "/dependency-scanner", icon: GoPackageDependencies, label: "Dependency Scanner", color: "orange" }
+                        { to: "/dependency-scanner", icon: GoPackageDependencies, label: "Dependency Scanner", color: "orange" },
+                        { to: "/code-metrics-analyzer", icon: IoMdAnalytics, label: "Code Metrics Analyzer", color: "orange" }
                       ].map((item) => (
                         <Link
                           key={item.to}
@@ -619,7 +622,9 @@ function NavBar({ isMenuOpen, setIsMenuOpen }) {
                   { to: "/performance-analyzer", icon: FaTachometerAlt, label: "Performance Analyzer", color: "yellow" },
                   { to: "/content-summarizer", icon: FaAlignLeft, label: "Content Summarizer", color: "purple" },
                   { to: "/security-scanner", icon: FaShieldAlt, label: "Security Scanner", color: "red" },
-                  { to: "/dependency-scanner", icon: GoPackageDependencies, label: "Dependency Scanner", color: "orange" }
+                  { to: "/dependency-scanner", icon: GoPackageDependencies, label: "Dependency Scanner", color: "orange" },
+                  { to: "/code-metrics-analyzer", icon: IoMdAnalytics, label: "Code Metrics Analyzer", color: "orange" }
+
                 ].map((item) => (
                   <Link
                     key={item.to}
