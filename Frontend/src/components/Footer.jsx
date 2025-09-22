@@ -29,7 +29,8 @@ const Footer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   const emailRegex = /^(?!.*\.\.)(?!\.)(?!.*\.$)[A-Za-z0-9._%+-]{1,64}@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,10}$/;
+    const emailRegex =
+      /^(?!.*\.\.)(?!\.)(?!.*\.$)[A-Za-z0-9._%+-]{1,64}@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,10}$/;
 
     if (!email) {
       alert("Email is required");
@@ -47,8 +48,7 @@ const Footer = () => {
   };
 
   // Common classes for links
-  const linkBase =
-    "text-sm transition-colors duration-200 hover:underline";
+  const linkBase = "text-sm transition-colors duration-200 hover:underline";
   const iconClass = "mr-2 text-xs";
 
   return (
