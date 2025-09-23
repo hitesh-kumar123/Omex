@@ -80,6 +80,8 @@ return res.status(400).send("Code is required");
   }
 };
 
+const explainCode = (req, res) =>
+  handleRequest(req, res, aiService.generateExplanation, ["code", "language"]);
 
 module.exports = {
   getReview,
@@ -93,4 +95,6 @@ module.exports = {
   analyzeSecurity,
   scanDependencies,
   codeMetricsAnalyzer,
+};
+  explainCode,
 };

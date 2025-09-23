@@ -16,6 +16,7 @@ router.post("/analyze-performance", aiController.analyzePerformance)
 router.post("/analyze-security", aiController.analyzeSecurity);
 router.post("/dependency-scanner", aiController.scanDependencies);
 router.post("/code-metrics-analyzer", aiController.codeMetricsAnalyzer);
+router.post("/explain-code", aiController.explainCode);
 
 
 module.exports = router;
