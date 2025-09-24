@@ -37,6 +37,11 @@ import PerformanceAnalyzer from "./pages/PerformanceAnalyzer";
 import SecurityScanner from "./pages/SecurityScanner";
 import TestCaseGenerator from "./pages/TestCaseGenerator";
 import DependencyScanner from "./pages/DependencyScanner";
+// Pages
+import LogoShowcase from "./pages/LogoShowcase";
+import Home from "./pages/Home";
+import NotFound from "./pages/notFound";
+import About from "./pages/About";
 import CodeCompare from "./pages/CodeCompare";
 import CodeComplexity from "./pages/CodeComplexity";
 import CodeGenerator from "./pages/CodeGenerator";
@@ -46,9 +51,63 @@ import ContentSummarizer from "./pages/ContentSummarizer";
 // 🚀 NEW PAGE
 import CodeMetrics from "./pages/CodeMetrics";
 import CodeMetricsAnalyzer from "./components/CodeMetricsAnalyzer.jsx";
+import Contact from "./pages/Contact";
+import Feedback from "./pages/Feedback";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Team from "./pages/Team";
+import TermsOfService from "./pages/TermsOfService";
+import Contribute from "./pages/Contribute";
+import ContributorGuide from "./pages/ContributorGuide";
+
+// Code tools pages
+import CodeBeautifier from "./pages/CodeBeautifier";
+import CodeTools from "./pages/CodeTools";
+import ContentSummarizer from "./pages/ContentSummarizer";
+import ErrorDebugger from "./pages/ErrorDebugger";
+import PerformanceAnalyzer from "./pages/PerformanceAnalyzer";
+import SecurityScanner from "./pages/SecurityScanner";
+import TestCaseGenerator from "./pages/TestCaseGenerator";
+import DependencyScanner from "./pages/DependencyScanner";
+
+// Components
+import { Toaster } from "react-hot-toast";
+import ContributorsLeaderboard from "./components/ContributorsLeaderboard";
+import BackToTopButton from "./components/BackToTopButton";
+import ScrollToTop from "./components/ScrollToTop";
+import NavBar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+// React & Router
+import { useState } from "react";
+import { Route, BrowserRouter as Router, Routes, Outlet } from "react-router-dom";
+
+// Styles & Themes
+import "prismjs/themes/prism-tomorrow.css";
+import "./styles/glassmorphism.css";
+
+// Theme context
+import { ThemeProvider } from "./context/ThemeContext";
+
+// Utils
+import "./utils/scrollbar.js";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Layout wrapper for all routes
+  const Layout = () => (
+    <div className="flex flex-col min-h-screen">
+      <nav className="w-full fixed top-0 left-0 z-50">
+        <NavBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      </nav>
+      <main className="flex-grow pt-20">
+        <Outlet />
+      </main>
+      <Footer />
+      {!isMenuOpen && <BackToTopButton />}
+      <Toaster position="top-right" />
+    </div>
+  );
 
   return (
     <ThemeProvider>
@@ -71,6 +130,9 @@ function App() {
             }
           >
             {/* Main routes */}
+          {/* All routes use Layout */}
+          <Route element={<Layout />}>
+            {/* Main pages */}
             <Route path="/" element={<Home />} />
             <Route path="/optimiser" element={<CodeOptimizer />} />
             <Route path="/codegenerator" element={<CodeGenerator />} />
