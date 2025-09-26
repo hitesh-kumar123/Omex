@@ -50,7 +50,7 @@ import BackToTopButton from "./components/BackToTopButton";
 import ContributorGuide from "./pages/ContributorGuide";
 
 // Not found page
-import NotFound from "./pages/NotFound";
+// import NotFound from "./pages/NotFound";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
