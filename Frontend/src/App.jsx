@@ -69,6 +69,9 @@ import SecurityScanner from "./pages/SecurityScanner";
 import TestCaseGenerator from "./pages/TestCaseGenerator";
 import DependencyScanner from "./pages/DependencyScanner";
 
+// insights page
+import AiInsights from "./pages/AiInsights.jsx";
+
 // Components
 import { Toaster } from "react-hot-toast";
 import ContributorsLeaderboard from "./components/ContributorsLeaderboard";
@@ -87,9 +90,12 @@ import "./styles/glassmorphism.css";
 
 // Theme context
 import { ThemeProvider } from "./context/ThemeContext";
+ 
 
+// Not found page
+// import NotFound from "./pages/NotFound"; 
 // Utils
-import "./utils/scrollbar.js";
+import "./utils/scrollbar.js"; 
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -140,6 +146,9 @@ function App() {
             <Route path="/codecompare" element={<CodeCompare />} />
             <Route path="/about" element={<About />} />
             <Route path="/contributors" element={<ContributorsLeaderboard />} />
+
+            {/* AiInsights */}
+            <Route path="/insights" element={<AiInsights/>} />
 
             {/* Code tools */}
             <Route path="/code-tools" element={<CodeTools />} />
