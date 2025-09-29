@@ -1,3 +1,42 @@
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+
+import "prismjs/themes/prism-tomorrow.css";
+import "./styles/glassmorphism.css";
+import "./utils/scrollbar.js";
+
+// Layout components
+import NavBar from "./components/Navbar";
+import Footer from "./components/Footer";
+import BackToTopButton from "./components/BackToTopButton";
+import ScrollToTop from "./components/ScrollToTop";
+import { Toaster } from "react-hot-toast";
+
+// Theme context
+import { ThemeProvider } from "./context/ThemeContext";
+
+// Pages
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Team from "./pages/Team";
+import Feedback from "./pages/Feedback";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import Contribute from "./pages/Contribute";
+import ContributorGuide from "./pages/ContributorGuide";
+import LogoShowcase from "./pages/LogoShowcase";
+import ContributorsLeaderboard from "./components/ContributorsLeaderboard";
+
+// Code tools pages
+import CodeTools from "./pages/CodeTools";
+import CodeBeautifier from "./pages/CodeBeautifier";
+import ErrorDebugger from "./pages/ErrorDebugger";
+import PerformanceAnalyzer from "./pages/PerformanceAnalyzer";
+import SecurityScanner from "./pages/SecurityScanner";
+import TestCaseGenerator from "./pages/TestCaseGenerator";
+import DependencyScanner from "./pages/DependencyScanner";
 // Pages
 import LogoShowcase from "./pages/LogoShowcase";
 import Home from "./pages/Home";
@@ -7,6 +46,11 @@ import CodeCompare from "./pages/CodeCompare";
 import CodeComplexity from "./pages/CodeComplexity";
 import CodeGenerator from "./pages/CodeGenerator";
 import CodeOptimizer from "./pages/CodeOptimizer";
+import ContentSummarizer from "./pages/ContentSummarizer";
+
+// 🚀 NEW PAGE
+import CodeMetrics from "./pages/CodeMetrics";
+import CodeMetricsAnalyzer from "./components/CodeMetricsAnalyzer.jsx";
 import Contact from "./pages/Contact";
 import Feedback from "./pages/Feedback";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -76,6 +120,22 @@ function App() {
       <Router>
         <ScrollToTop />
         <Routes>
+          <Route
+            element={
+              <div className="flex flex-col min-h-screen">
+                <nav className="w-full fixed top-0 left-0 z-50">
+                  <NavBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+                </nav>
+                <main className="flex-grow pt-20">
+                  <Outlet />
+                </main>
+                <Footer />
+                {!isMenuOpen && <BackToTopButton />}
+                <Toaster position="top-right" />
+              </div>
+            }
+          >
+            {/* Main routes */}
           {/* All routes use Layout */}
           <Route element={<Layout />}>
             {/* Main pages */}
@@ -93,12 +153,16 @@ function App() {
             {/* Code tools */}
             <Route path="/code-tools" element={<CodeTools />} />
             <Route path="/test-case-generator" element={<TestCaseGenerator />} />
+            <Route path="/code-metrics-analyzer" element={<CodeMetricsAnalyzer />} />
             <Route path="/code-beautifier" element={<CodeBeautifier />} />
             <Route path="/error-debugger" element={<ErrorDebugger />} />
             <Route path="/performance-analyzer" element={<PerformanceAnalyzer />} />
             <Route path="/content-summarizer" element={<ContentSummarizer />} />
             <Route path="/security-scanner" element={<SecurityScanner />} />
             <Route path="/dependency-scanner" element={<DependencyScanner />} />
+
+            {/* 🚀 New route for Code Metrics Analyzer */}
+            <Route path="/code-metrics" element={<CodeMetrics />} />
 
             {/* Company pages */}
             <Route path="/team" element={<Team />} />
