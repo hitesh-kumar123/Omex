@@ -1,31 +1,7 @@
 // Pages
 import LogoShowcase from "./pages/LogoShowcase";
-import "prismjs/themes/prism-tomorrow.css";
-import "./styles/glassmorphism.css";
-
-import { useState } from "react";
-import { Route, BrowserRouter as Router, Routes, Outlet } from "react-router-dom";
-
-import NotFound from "./pages/notFound";
 import Home from "./pages/Home";
-import NavBar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { Toaster } from "react-hot-toast";
-
-// New utility
-import ScrollToTop from "./components/ScrollToTop";
-
-// Code tools pages
-import CodeBeautifier from "./pages/CodeBeautifier";
-import CodeTools from "./pages/CodeTools";
-import ContentSummarizer from "./pages/ContentSummarizer";
-import ErrorDebugger from "./pages/ErrorDebugger";
-import PerformanceAnalyzer from "./pages/PerformanceAnalyzer";
-import SecurityScanner from "./pages/SecurityScanner";
-import TestCaseGenerator from "./pages/TestCaseGenerator";
-import DependencyScanner from "./pages/DependencyScanner";
-
-// Other pages
+import NotFound from "./pages/notFound";
 import About from "./pages/About";
 import CodeCompare from "./pages/CodeCompare";
 import CodeComplexity from "./pages/CodeComplexity";
@@ -68,11 +44,7 @@ import "./styles/glassmorphism.css";
 // Theme context
 import { ThemeProvider } from "./context/ThemeContext";
 
-// Extra components
-import BackToTopButton from "./components/BackToTopButton";
-import ContributorGuide from "./pages/ContributorGuide";
-
-// Scrollbar
+// Utils
 import "./utils/scrollbar.js";
 
 function App() {
@@ -96,24 +68,11 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        <ScrollToTop /> {/* ensures every route loads from the top */}
+        <ScrollToTop />
         <Routes>
-          <Route
-            element={
-              <div className="flex flex-col min-h-screen">
-                <nav className="w-full fixed top-0 left-0 z-50">
-                  <NavBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-                </nav>
-                <main className="flex-grow pt-20">
-                  <Outlet />
-                </main>
-                <Footer />
-                {!isMenuOpen && <BackToTopButton />}
-                <Toaster position="top-right" />
-              </div>
-            }
-          >
-            {/* Main routes */}
+          {/* All routes use Layout */}
+          <Route element={<Layout />}>
+            {/* Main pages */}
             <Route path="/" element={<Home />} />
             <Route path="/optimiser" element={<CodeOptimizer />} />
             <Route path="/codegenerator" element={<CodeGenerator />} />

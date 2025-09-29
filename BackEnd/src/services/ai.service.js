@@ -4,7 +4,7 @@
  */
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const systemInstructions = require("../config/systemInstructions");
+const systemInstructions = require("../config/systemInstructions").default;
 
 // Initialize Google Generative AI
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_KEY);
@@ -308,6 +308,21 @@ Please provide details on any vulnerable or deprecated dependencies and suggest 
   return result.response.text();
 }
 
+// At the bottom of ai.service.js
+async function codeMetricsAnalyzer(code) {
+  const prompt = `Analyze the following code snippet for metrics like lines of code, cyclomatic complexity, number of functions, and potential issues:
+
+\`\`\`
+${code}
+\`\`\`
+
+Return a JSON with metrics.`;
+
+  const result = await codeComplexity.generateContent(prompt);
+  const rawResponse = result.response.text();
+  // You can parse JSON if your prompt asks AI to return JSON
+  return cleanAIResponse(rawResponse);
+}
 /**
  * Generate an explanation for a code snippet
  * @param {string} code - The code to explain
@@ -340,5 +355,6 @@ module.exports = {
   summarizeContent,
   analyzeSecurity,
   scanDependencies,
+ codeMetricsAnalyzer,
   generateExplanation,
 };

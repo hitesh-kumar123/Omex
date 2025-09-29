@@ -67,6 +67,19 @@ const scanDependencies = async (req, res) => {
   }
 };
 
+const codeMetricsAnalyzer = async (req, res) => {
+  const { code } = req.body;
+  if (!code) {
+return res.status(400).send("Code is required");
+  }
+  try {
+    const result = await aiService.codeMetricsAnalyzer(code);
+    res.json({ result });
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
 const explainCode = (req, res) =>
   handleRequest(req, res, aiService.generateExplanation, ["code", "language"]);
 
@@ -81,5 +94,7 @@ module.exports = {
   analyzePerformance,
   analyzeSecurity,
   scanDependencies,
+  codeMetricsAnalyzer,
+};
   explainCode,
 };
