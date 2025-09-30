@@ -4,10 +4,6 @@ import "./styles/glassmorphism.css";
 
 import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes, Outlet } from "react-router-dom";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-
-import NotFound from "./pages/notFound";
 
 import Home from "./pages/Home";
 import NavBar from "./components/Navbar";
@@ -81,7 +77,7 @@ function App() {
                     <Toaster position="top-right" />
                   </div>
                 }
-
+            >
                 {/* Main routes */}
                 <Route path="/" element={<Home />} />
                 <Route path="/optimiser" element={<CodeOptimizer />} />
