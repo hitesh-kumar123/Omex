@@ -76,7 +76,8 @@ function Nav({ isMenuOpen, setIsMenuOpen }) {
       "/performance-analyzer",
       "/content-summarizer",
       "/security-scanner",
-      "/dependency-scanner"
+      "/dependency-scanner",
+      "/code-metrics-analyzer",
     ];
     return toolsPaths.some((path) => location.pathname === path);
   };
@@ -273,6 +274,17 @@ function Nav({ isMenuOpen, setIsMenuOpen }) {
 
                     <Link
                       to="/dependency-scanner"
+                      className={`hover:text-white hover:bg-gray-500 block px-4 py-2 text-sm ${
+                        isDark
+                          ? "text-gray-300 hover:bg-gray-700"
+                          : "text-gray-700 hover:bg-gray-100"
+                      }`}
+                      onClick={() => setIsToolsDropdownOpen(false)}
+                    >
+                      Dependency Scanner
+                    </Link>
+                    <Link
+                      to="/code-metrics-analyzer"
                       className={`hover:text-white hover:bg-gray-500 block px-4 py-2 text-sm ${
                         isDark
                           ? "text-gray-300 hover:bg-gray-700"
@@ -760,6 +772,22 @@ function Nav({ isMenuOpen, setIsMenuOpen }) {
                 >
                   <GoPackageDependencies className="text-red-400" />
                   <span>Dependency Scanner</span>
+                </Link>
+                <Link
+                  to="/code-metrics-analyzer"
+                  className={`flex items-center space-x-3 p-3 rounded-lg ${
+                    isActive("/code-metrics-analyzer")
+                      ? isDark
+                        ? "bg-blue-900/30 text-blue-400"
+                        : "bg-blue-50 text-blue-600"
+                      : isDark
+                      ? "hover:bg-gray-800/70"
+                      : "hover:bg-gray-100/70"
+                  }`}
+                  onClick={toggleMenu}
+                >
+                  <GoPackageDependencies className="text-red-400" />
+                  <span>Code Metrics Analyzer</span>
                 </Link>
               </div>
             </div>

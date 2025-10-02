@@ -4,7 +4,7 @@
  */
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const systemInstructions = require("../config/systemInstructions");
+const systemInstructions = require("../config/systemInstructions").default;
 
 // Initialize Google Generative AI
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_KEY);
@@ -63,6 +63,11 @@ const securityAnalyzer = genAI.getGenerativeModel({
 const dependencyScannerModel = genAI.getGenerativeModel({
   model: "gemini-2.0-flash",
   systemInstruction: systemInstructions.dependencyScanner,
+});
+
+const codeExplainer = genAI.getGenerativeModel({
+  model: "gemini-2.0-flash",
+  systemInstruction: systemInstructions.codeExplainer,
 });
 
 /**
@@ -303,6 +308,41 @@ Please provide details on any vulnerable or deprecated dependencies and suggest 
   return result.response.text();
 }
 
+// At the bottom of ai.service.js
+async function codeMetricsAnalyzer(code) {
+  const prompt = `Analyze the following code snippet for metrics like lines of code, cyclomatic complexity, number of functions, and potential issues:
+
+\`\`\`
+${code}
+\`\`\`
+
+Return a JSON with metrics.`;
+
+  const result = await codeComplexity.generateContent(prompt);
+  const rawResponse = result.response.text();
+  // You can parse JSON if your prompt asks AI to return JSON
+  return cleanAIResponse(rawResponse);
+}
+/**
+ * Generate an explanation for a code snippet
+ * @param {string} code - The code to explain
+ * @param {string} language - The programming language
+ * @returns {Promise<string>} - The explanation
+ */
+async function generateExplanation(code, language = '') {
+  const prompt = `Please explain the following ${language ? language + ' ' : ''}code snippet:
+
+\`\`\`${language}
+${code}
+\`\`\`
+
+Provide a clear, concise explanation of what this code does and how it works.`;
+
+  const result = await codeExplainer.generateContent(prompt);
+  const rawResponse = result.response.text();
+  return cleanAIResponse(rawResponse);
+}
+
 module.exports = {
   generateReview,
   generateCode,
@@ -315,4 +355,6 @@ module.exports = {
   summarizeContent,
   analyzeSecurity,
   scanDependencies,
+ codeMetricsAnalyzer,
+  generateExplanation,
 };

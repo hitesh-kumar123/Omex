@@ -14,6 +14,7 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import { GoPackageDependencies } from "react-icons/go";
+import { GrAnalytics } from "react-icons/gr";
 import { useTheme } from "../context/ThemeContext";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -63,7 +64,7 @@ export default function CodeTools() {
   const headerRef = useRef(null);
   const paragraphRef = useRef(null);
   const cardRefs = useRef([]);
-
+ 
   const tools = [
     {
       icon: <FaVial className="text-blue-400 text-2xl" />,
@@ -113,6 +114,13 @@ export default function CodeTools() {
       description:
         "Scan your dependencies for vulnerabilities and deprecation.",
       link: "/dependency-scanner",
+    },
+    {
+      icon: <GrAnalytics className="text-orange-500 text-2xl" />,
+      title: "Code Metrics Analyzer",
+      description:
+        "Analyze your codebase for various metrics like complexity, maintainability, and more.",
+      link: "/code-metrics-analyzer",
     },
   ];
 
@@ -165,13 +173,18 @@ export default function CodeTools() {
     }
   }, [loading]);
 
-  if (loading) {
+ if (loading) {
     return (
       <div
         className={`min-h-screen flex items-center justify-center ${isDark ? "bg-gray-800" : "bg-gray-100"
           }`}
       >
-        <Loader fullscreen size="xl" color="purple" text="Loading Tools..." />
+        <Loader
+          fullscreen
+          size="xl"
+          color="purple"
+          text="Loading Dependency Scanner..."
+        />
       </div>
     );
   }

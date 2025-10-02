@@ -98,6 +98,131 @@ or search for `Roshan Suthar | PA`
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="150%">
 
+
+# 📂 Project Folder Structure
+
+```
+📦 OMEX
+├── 📁 .github
+│   ├── 📁 ISSUE_TEMPLATE
+│   │   ├── 🐛 bug_report.md                  # Template for reporting bugs
+│   │   ├── 🌟 feature_request.md             # Template for requesting new features
+│   │   └── 🎨 style_enhencement.md           # Template for style/enhancement issues
+│   ├── 📁 workflows
+│   │   ├── ⚙️ issue-create-automate-message.yml    # GitHub Actions workflow - automate issue messages
+│   │   └── ⚙️ pr-create-automate-message.yml       # GitHub Actions workflow - automate PR messages
+│   └── 📝 PULL_REQUEST_TEMPLATE.md           # Template for pull requests
+
+├── 📁 BackEnd
+│   ├── 📁 src
+│   │   ├── 📁 config
+│   │   │   └── 📝 systemInstructions.js         # System-level instructions/settings
+│   │   ├── 📁 controllers
+│   │   │   ├── 📝 ai.controller.js              # AI controller
+│   │   │   └── 📝 media.controller.js           # Media controller
+│   │   ├── 📁 routes
+│   │   │   ├── 📝 ai.routes.js                  # AI routes
+│   │   │   └── 📝 media.routes.js               # Media routes
+│   │   ├── 📁 services
+│   │   │   └── 📝 ai.service.js                 # AI service layer
+│   │   ├── 📝 app.js                           # Main app entry point
+│   │   ├── 📝 index.html                       # Static landing page
+│   │   └── 🔑 .env.example                     # Backend environment variables
+│   ├── 🗄️ eng.traindata                        # English training data file for AI
+│   ├── 📦 package-lock.json                    # Backend lock file
+│   ├── 📦 package.json                         # Backend dependencies
+│   └── 🖥️ server.js                            # Backend server
+
+├── 📁 Frontend
+│   ├── 📁 public                              # Static assets
+│   ├── 📁 src                                 # Frontend source
+│   │   ├── 📁 components                      # UI reusable components
+│   │   │   ├── 📁 css                         # Component-level CSS files
+│   │   │   │   ├── 📝 Loader.css
+│   │   │   │   └── 📝 NavBar.css
+│   │   │   ├── 📝 AIDemo.jsx
+│   │   │   ├── 📝 AiNetworkHero.jsx
+│   │   │   ├── 📝 BackToTopButton.jsx
+│   │   │   ├── 📝 ChatComponent.jsx
+│   │   │   ├── 📝 CodeEditor.jsx
+│   │   │   ├── 📝 CodeExamples.jsx
+│   │   │   ├── 📝 CodeHistory.jsx
+│   │   │   ├── 📝 CodeMetricsAnalyzer.jsx
+│   │   │   ├── 📝 ContributorsLeaderboard.jsx
+│   │   │   ├── 📝 Faq.jsx
+│   │   │   ├── 📝 FeedbackButton.jsx
+│   │   │   ├── 📝 FeedbackForm.jsx
+│   │   │   ├── 📝 Footer.jsx
+│   │   │   ├── 📝 Loader.jsx
+│   │   │   ├── 📝 MediaUploader.jsx
+│   │   │   ├── 📝 Nav.jsx
+│   │   │   ├── 📝 Navbar.jsx
+│   │   │   ├── 📝 ScrollToTop.jsx
+│   │   │   ├── 📝 SummaryDisplay.jsx
+│   │   │   ├── 📝 Testimonials.jsx
+│   │   │   ├── 📝 TextInput.jsx
+│   │   │   └── 📝 YouTubeInput.jsx
+│   │   ├── 📁 context
+│   │   │   └── 📝 ThemeContext.jsx
+│   │   ├── 📁 pages
+│   │   │   ├── 📝 Ainsights.jsx
+│   │   │   ├── 📝 CodeBeautifier.jsx
+│   │   │   ├── 📝 CodeCompare.jsx
+│   │   │   ├── 📝 CodeComplexity.jsx
+│   │   │   ├── 📝 CodeGenerator.jsx
+│   │   │   ├── 📝 CodeMetrics.jsx
+│   │   │   ├── 📝 CodeOptimizer.jsx
+│   │   │   ├── 📝 CodeTools.jsx
+│   │   │   ├── 📝 Contact.jsx
+│   │   │   ├── 📝 ContentSummarizer.jsx
+│   │   │   ├── 📝 Contribute.jsx
+│   │   │   ├── 📝 ContributorGuide.jsx
+│   │   │   ├── 📝 DependencyScanner.jsx
+│   │   │   ├── 📝 ErrorDebugger.jsx
+│   │   │   ├── 📝 FAQ.jsx
+│   │   │   ├── 📝 Feedback.jsx
+│   │   │   ├── 📝 Home.jsx
+│   │   │   ├── 📝 LogoShowcase.css
+│   │   │   ├── 📝 LogoShowcase.jsx
+│   │   │   ├── 📝 notFound.jsx
+│   │   │   ├── 📝 PerformanceAnalyzer.jsx
+│   │   │   ├── 📝 PrivacyPolicy.jsx
+│   │   │   ├── 📝 SecurityScanner.jsx
+│   │   │   ├── 📝 Team.jsx
+│   │   │   ├── 📝 TermsOfService.jsx
+│   │   │   └── 📝 TestCaseGenerator.jsx
+│   │   ├── 📁 store
+│   │   │   └── 📝 auth.js
+│   │   ├── 📁 styles
+│   │   │   └── 📝 glassmorphism.css
+│   │   ├── 📁 utils
+│   │   │   ├── 📝 mobileUtils.js
+│   │   │   └── 📝 scrollbar.js
+│   │   ├── 📝 App.css
+│   │   ├── 📝 App.jsx
+│   │   ├── 📝 index.css
+│   │   └── 📝 main.jsx
+│   ├── 🔑 .env.example
+│   ├── 📝 .gitignore
+│   ├── 📝 README.md
+│   ├── ⚡ eslint.config.js
+│   ├── 🌐 index.html
+│   ├── 🛠️ netlify.toml
+│   ├── 📦 package-lock.json
+│   ├── 📦 package.json
+│   └── ⚡ vite.config.js
+
+├── 📝 .gitignore
+├── .DS_Store
+├── 📝 CONTRIBUTING.md
+├── 📜 LICENSE
+├── 📝 README.md
+├── 🐞 npm-debug.log
+└── ✨ Contributor Covenant Code of Conduct — G
+
+
+```
+
 🌟 **Exciting News...**
 
 🚀 This project is now an official part of GirlScript Summer of Code – GSSoC'25! 💃🎉💻 We're thrilled to welcome contributors from all over India and beyond to collaborate, build, and grow Omex! Let’s make learning and career development smarter – together! 🌟👨‍💻👩‍💻
@@ -307,5 +432,7 @@ This project is licensed under the MIT License - see the [`License`](https://git
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=65&section=footer"/>
 
 **Ready to show off your coding achievements? Get started with Omex today! 🚀**
+
+
 
 

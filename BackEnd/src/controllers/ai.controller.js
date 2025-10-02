@@ -66,6 +66,23 @@ const scanDependencies = async (req, res) => {
     res.status(500).send("An error occurred while scanning dependencies");
   }
 };
+
+const codeMetricsAnalyzer = async (req, res) => {
+  const { code } = req.body;
+  if (!code) {
+return res.status(400).send("Code is required");
+  }
+  try {
+    const result = await aiService.codeMetricsAnalyzer(code);
+    res.json({ result });
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
+const explainCode = (req, res) =>
+  handleRequest(req, res, aiService.generateExplanation, ["code", "language"]);
+
 module.exports = {
   getReview,
   getCode,
@@ -77,4 +94,7 @@ module.exports = {
   analyzePerformance,
   analyzeSecurity,
   scanDependencies,
+  codeMetricsAnalyzer,
+};
+  explainCode,
 };

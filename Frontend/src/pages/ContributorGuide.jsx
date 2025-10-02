@@ -290,29 +290,42 @@ const ContributorGuide = () => {
 
         {/* Git Commands Cheat Sheet */}
         <section className="mb-16">
-          <h2 className={`text-3xl font-bold mb-8 text-center ${isDark ? 'text-white' : 'text-gray-800'
-            }`}>
+          <h2 className={`text-3xl font-bold mb-8 text-center ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
             Essential Git Commands
           </h2>
-          <div className="bg-gray-900 rounded-xl p-4 md:p-6 shadow-xl border border-gray-700">
-            <div className="space-y-4">
-              {commands.map((cmd) => (
-                <div key={cmd.id} className="bg-gray-950 rounded-lg p-3 md:p-4 border border-gray-700">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-2">
-                    <h4 className="text-blue-400 font-semibold text-sm md:text-base">{cmd.title}</h4>
-                    <button
-                      onClick={() => copyToClipboard(cmd.command, cmd.id)}
-                      className="bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center space-x-2 px-3 py-2 rounded text-sm transition-all duration-300 hover:scale-105 self-start sm:self-center"
-                    >
-                      {copiedCommand === cmd.id ? <FaCheck className="w-4 h-4" /> : <FaCopy className="w-4 h-4" />}
-                      <span>{copiedCommand === cmd.id ? 'Copied!' : 'Copy'}</span>
-                    </button>
-                  </div>
-                  <code className="text-blue-400 block mb-2 font-mono text-sm md:text-base break-all">{cmd.command}</code>
-                  <p className="text-gray-400 text-xs md:text-sm">{cmd.description}</p>
+          <div className="space-y-4">
+            {commands.map((cmd) => (
+              <div
+                key={cmd.id}
+                className={`rounded-2xl p-5 md:p-6 shadow-lg border transition-all duration-300
+                  ${isDark
+                    ? 'bg-[#1e293b] border-[#334155] hover:bg-[#111827]'
+                    : 'bg-white border-gray-200 hover:bg-blue-50'}`}
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-2">
+                  <h4 className={`font-bold text-lg md:text-xl ${isDark ? 'text-white' : 'text-black'}`}>
+                    {cmd.title}
+                  </h4>
+                  <button
+                    onClick={() => copyToClipboard(cmd.command, cmd.id)}
+                    className={`flex items-center justify-center space-x-2 px-3 py-2 rounded transition-all duration-300 font-medium
+                      ${isDark
+                        ? 'bg-gray-800 border border-gray-700 text-gray-100 hover:bg-gray-700'
+                        : 'bg-blue-100 border border-blue-200 text-blue-700 hover:bg-blue-200'}`}
+                  >
+                    {copiedCommand === cmd.id ? <FaCheck className="w-4 h-4" /> : <FaCopy className="w-4 h-4" />}
+                    <span>{copiedCommand === cmd.id ? 'Copied!' : 'Copy'}</span>
+                  </button>
                 </div>
-              ))}
-            </div>
+                <code
+                  className={`block mb-2 font-mono px-2 py-1 rounded text-base break-words
+                    ${isDark ? 'bg-[#334155] text-blue-200' : 'bg-gray-100 text-blue-700'}`}
+                >
+                  {cmd.command}
+                </code>
+                <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{cmd.description}</p>
+              </div>
+            ))}
           </div>
         </section>
 
