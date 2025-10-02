@@ -1,12 +1,54 @@
+
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+
+import "prismjs/themes/prism-tomorrow.css";
+import "./styles/glassmorphism.css";
+import "./utils/scrollbar.js";
+
+// Layout components
+import Chatbot from "./components/Chatbot.jsx"; 
+import NavBar from "./components/Navbar";
+import Footer from "./components/Footer";
+import BackToTopButton from "./components/BackToTopButton";
+import ScrollToTop from "./components/ScrollToTop";
+import { Toaster } from "react-hot-toast";
+
+// Theme context
+import { ThemeProvider } from "./context/ThemeContext";
+
+// Pages
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Team from "./pages/Team";
+import Feedback from "./pages/Feedback";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import Contribute from "./pages/Contribute";
+import ContributorGuide from "./pages/ContributorGuide";
+import LogoShowcase from "./pages/LogoShowcase";
+
 // Pages
 import LogoShowcase from "./pages/LogoShowcase";
 import Home from "./pages/Home";
 import NotFound from "./pages/notFound";
 import About from "./pages/About";
+
 import CodeCompare from "./pages/CodeCompare";
 import CodeComplexity from "./pages/CodeComplexity";
 import CodeGenerator from "./pages/CodeGenerator";
 import CodeOptimizer from "./pages/CodeOptimizer";
+
+import ContentSummarizer from "./pages/ContentSummarizer";
+import CodeMetrics from "./pages/CodeMetrics";
+import AiInsights from "./pages/AiInsights";
+
+// Components
+import ContributorsLeaderboard from "./components/ContributorsLeaderboard";
+import CodeMetricsAnalyzer from "./components/CodeMetricsAnalyzer";
+
 import Contact from "./pages/Contact";
 import Feedback from "./pages/Feedback";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -15,15 +57,16 @@ import TermsOfService from "./pages/TermsOfService";
 import Contribute from "./pages/Contribute";
 import ContributorGuide from "./pages/ContributorGuide";
 
+
 // Code tools pages
-import CodeBeautifier from "./pages/CodeBeautifier";
 import CodeTools from "./pages/CodeTools";
-import ContentSummarizer from "./pages/ContentSummarizer";
+import CodeBeautifier from "./pages/CodeBeautifier";
 import ErrorDebugger from "./pages/ErrorDebugger";
 import PerformanceAnalyzer from "./pages/PerformanceAnalyzer";
 import SecurityScanner from "./pages/SecurityScanner";
 import TestCaseGenerator from "./pages/TestCaseGenerator";
 import DependencyScanner from "./pages/DependencyScanner";
+
 
 // Components
 import { Toaster } from "react-hot-toast";
@@ -47,6 +90,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 // Utils
 import "./utils/scrollbar.js";
 
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -60,6 +104,7 @@ function App() {
         <Outlet />
       </main>
       <Footer />
+      <Chatbot/>
       {!isMenuOpen && <BackToTopButton />}
       <Toaster position="top-right" />
     </div>
@@ -70,7 +115,9 @@ function App() {
       <Router>
         <ScrollToTop />
         <Routes>
+
           {/* All routes use Layout */}
+
           <Route element={<Layout />}>
             {/* Main pages */}
             <Route path="/" element={<Home />} />
@@ -80,6 +127,11 @@ function App() {
             <Route path="/codecompare" element={<CodeCompare />} />
             <Route path="/about" element={<About />} />
             <Route path="/contributors" element={<ContributorsLeaderboard />} />
+
+
+            {/* AiInsights */}
+            <Route path="/insights" element={<AiInsights />} />
+
 
             {/* Code tools */}
             <Route path="/code-tools" element={<CodeTools />} />
