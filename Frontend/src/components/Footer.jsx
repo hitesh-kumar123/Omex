@@ -2,6 +2,12 @@ import {
   FaBug,
   FaChartLine,
   FaCode,
+  FaUsers,
+  FaUserFriends,
+  FaHandsHelping,
+  FaQuestionCircle,
+   FaShieldAlt,
+   FaFileContract,
   FaComment,
   FaEnvelope,
   FaGithub,
@@ -20,6 +26,8 @@ import { BsTwitterX } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { useState } from "react";
+const linkBase = "hover:underline flex items-center space-x-2";
+const iconClass = "text-sm";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -530,6 +538,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
+        </div>
         </div>
       </footer>
     </>
