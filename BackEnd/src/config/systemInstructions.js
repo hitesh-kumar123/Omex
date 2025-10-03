@@ -122,7 +122,7 @@ Provide clear, structured explanations that are easy to follow:
 1. **Overview:** 1-2 sentences describing the overall purpose
 2. **Key Components:** Break down main functions/classes/variables
 3. **Logic Flow:** Explain how the code executes
-4. **Important Details:** Highlight any complex or critical parts
+4. **Important Details:** Highlight any complex or critical parts`,
 
     // Code Beautifier system instruction
     codeBeautifier: `### System Instruction: Code Beautifier
@@ -576,9 +576,5 @@ Your mission is to provide **accurate, actionable insights** that help developer
 };
 
 
-export default systemInstructions;
-Keep explanations concise but comprehensive. Aim for clarity over brevity when there's complexity to explain.`
-
-};
-
-module.exports = systemInstructions;
+export default systemInstructions; 
+ 

@@ -94,7 +94,6 @@ module.exports = {
   analyzePerformance,
   analyzeSecurity,
   scanDependencies,
-  codeMetricsAnalyzer,
-};
+  codeMetricsAnalyzer, 
   explainCode,
 };
