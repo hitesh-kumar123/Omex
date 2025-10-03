@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../components/css/NavBar.css"
+import { MdOutlineCleaningServices } from "react-icons/md";
 import {
   FaChartLine,
   FaChevronDown,
@@ -130,7 +131,8 @@ function NavBar({ isMenuOpen, setIsMenuOpen }) {
       "/error-debugger",
       "/performance-analyzer",
       "/content-summarizer",
-      "/security-scanner"
+      "/security-scanner",
+      "/dead-code-finder"
     ];
     return toolsPaths.some((path) => location.pathname === path);
   };
@@ -341,7 +343,8 @@ function NavBar({ isMenuOpen, setIsMenuOpen }) {
                         { to: "/content-summarizer", icon: FaAlignLeft, label: "Content Summarizer", color: "purple" },
                         { to: "/security-scanner", icon: FaShieldAlt, label: "Security Scanner", color: "red" },
                         { to: "/dependency-scanner", icon: GoPackageDependencies, label: "Dependency Scanner", color: "orange" },
-                        { to: "/code-metrics-analyzer", icon: IoMdAnalytics, label: "Code Metrics Analyzer", color: "orange" }
+                        { to: "/code-metrics-analyzer", icon: IoMdAnalytics, label: "Code Metrics Analyzer", color: "orange" },
+                        { to: "/dead-code-finder", icon: MdOutlineCleaningServices, label: "Dead Code Finder", color: "pink" }
                       ].map((item) => (
                         <Link
                           key={item.to}
