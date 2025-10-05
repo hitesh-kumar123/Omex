@@ -95,6 +95,6 @@ module.exports = {
   analyzeSecurity,
   scanDependencies,
   codeMetricsAnalyzer,
-};
   explainCode,
 };
+

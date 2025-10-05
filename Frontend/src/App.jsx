@@ -28,13 +28,13 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Contribute from "./pages/Contribute";
 import ContributorGuide from "./pages/ContributorGuide";
-import LogoShowcase from "./pages/LogoShowcase";
+// import LogoShowcase from "./pages/LogoShowcase";
 
 // Pages
 import LogoShowcase from "./pages/LogoShowcase";
-import Home from "./pages/Home";
-import NotFound from "./pages/notFound";
-import About from "./pages/About";
+// import Home from "./pages/Home";
+// import NotFound from "./pages/notFound";
+// import About from "./pages/About";
 
 import CodeCompare from "./pages/CodeCompare";
 import CodeComplexity from "./pages/CodeComplexity";
@@ -49,13 +49,13 @@ import AiInsights from "./pages/AiInsights";
 import ContributorsLeaderboard from "./components/ContributorsLeaderboard";
 import CodeMetricsAnalyzer from "./components/CodeMetricsAnalyzer";
 
-import Contact from "./pages/Contact";
-import Feedback from "./pages/Feedback";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Team from "./pages/Team";
-import TermsOfService from "./pages/TermsOfService";
-import Contribute from "./pages/Contribute";
-import ContributorGuide from "./pages/ContributorGuide";
+// import Contact from "./pages/Contact";
+// import Feedback from "./pages/Feedback";
+// import PrivacyPolicy from "./pages/PrivacyPolicy";
+// import Team from "./pages/Team";
+// import TermsOfService from "./pages/TermsOfService";
+// import Contribute from "./pages/Contribute";
+// import ContributorGuide from "./pages/ContributorGuide";
 
 
 // Code tools pages
@@ -69,23 +69,23 @@ import DependencyScanner from "./pages/DependencyScanner";
 
 
 // Components
-import { Toaster } from "react-hot-toast";
-import ContributorsLeaderboard from "./components/ContributorsLeaderboard";
-import BackToTopButton from "./components/BackToTopButton";
-import ScrollToTop from "./components/ScrollToTop";
-import NavBar from "./components/Navbar";
-import Footer from "./components/Footer";
+// import { Toaster } from "react-hot-toast";
+// import ContributorsLeaderboard from "./components/ContributorsLeaderboard";
+// import BackToTopButton from "./components/BackToTopButton";
+// import ScrollToTop from "./components/ScrollToTop";
+// import NavBar from "./components/Navbar";
+// import Footer from "./components/Footer";
 
 // React & Router
-import { useState } from "react";
-import { Route, BrowserRouter as Router, Routes, Outlet } from "react-router-dom";
+// import { useState } from "react";
+// import { Route, BrowserRouter as Router, Routes, Outlet } from "react-router-dom";
 
 // Styles & Themes
 import "prismjs/themes/prism-tomorrow.css";
 import "./styles/glassmorphism.css";
 
 // Theme context
-import { ThemeProvider } from "./context/ThemeContext";
+// import { ThemeProvider } from "./context/ThemeContext";
 
 // Utils
 import "./utils/scrollbar.js";

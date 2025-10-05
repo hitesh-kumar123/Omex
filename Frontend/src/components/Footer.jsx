@@ -2,8 +2,6 @@ import {
   FaBug,
   FaChartLine,
   FaCode,
-  FaUsers,
-  FaUserFriends,
   FaHandsHelping,
   FaQuestionCircle,
    FaShieldAlt,
@@ -16,10 +14,6 @@ import {
   FaDiscord,
   FaUsers,
   FaUserFriends,
-  FaHandsHelping,
-  FaQuestionCircle,
-  FaShieldAlt,
-  FaFileContract,
 } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -234,8 +228,8 @@ const Footer = () => {
           </div>
         </div>
 
-        </div>
-        style={{
+
+        <div style={{
           boxShadow: isDark
             ? "0 -12px 40px rgba(99, 102, 241, 0.3), 0 -8px 24px rgba(139, 92, 246, 0.2), 0 -4px 16px rgba(0, 0, 0, 0.3)"
             : "0 -12px 40px rgba(99, 102, 241, 0.2), 0 -8px 24px rgba(139, 92, 246, 0.15), 0 -4px 16px rgba(0, 0, 0, 0.06)",
