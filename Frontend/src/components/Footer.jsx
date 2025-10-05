@@ -87,14 +87,16 @@ const Footer = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               
               {/* Left Half - Brand Section */}
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3">
-                  <img 
-                    src={isDark ? "/omex-text-logo-white.svg" : "/omex-text-logo.svg"}
-                    alt="Omex AI Logo" 
-                    className="h-12 w-auto" 
-                  />
-                </div>
+               <div className="space-y-6">
+      <div className="flex items-center space-x-3">
+        <Link to="/">  {/* This makes the logo clickable and redirects to Home */}
+          <img 
+            src={isDark ? "/omex-text-logo-white.svg" : "/omex-text-logo.svg"}
+            alt="Omex AI Logo" 
+            className="h-12 w-auto cursor-pointer transition-transform duration-300 hover:scale-105"
+          />
+        </Link>
+      </div>
                 <p className={`text-base leading-relaxed max-w-lg ${
                   isDark ? "text-gray-400" : "text-gray-600"
                 }`}>
