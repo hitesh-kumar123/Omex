@@ -217,7 +217,7 @@ const Chatbot = () => {
       )}
 
       <button className="chatbot-toggle-btn" onClick={toggleChat}>
-        <img src="public/omex-logo-white.svg" alt="omexbutton" />
+        <img src="/omex-logo-white.svg" alt="omexbutton" />
       </button>
     </div>
   );
