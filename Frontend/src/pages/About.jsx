@@ -178,7 +178,7 @@ const About = () => {
               >
                 <div className="flex items-center mb-4">
                   <div
-                    className={`p-3 rounded-full ${isDark ? "bg-yellow-500 bg-opacity-20" : "bg-yellow-100"
+                    className={`p-3 rounded-full ${isDark ? "bg-yellow-200 bg-opacity-20" : "bg-yellow-100"
                       }`}
                   >
                     <FaLightbulb className="text-yellow-400 text-xl" />
@@ -197,7 +197,7 @@ const About = () => {
               >
                 <div className="flex items-center mb-4">
                   <div
-                    className={`p-3 rounded-full ${isDark ? "bg-green-500 bg-opacity-20" : "bg-green-100"
+                    className={`p-3 rounded-full ${isDark ? "bg-green-200 bg-opacity-20" : "bg-green-100"
                       }`}
                   >
                     <FaRobot className="text-green-400 text-xl" />
@@ -216,7 +216,7 @@ const About = () => {
               >
                 <div className="flex items-center mb-4">
                   <div
-                    className={`p-3 rounded-full ${isDark ? "bg-purple-500 bg-opacity-20" : "bg-purple-100"
+                    className={`p-3 rounded-full ${isDark ? "bg-purple-300 bg-opacity-20" : "bg-purple-100"
                       }`}
                   >
                     <FaChartLine className="text-purple-400 text-xl" />
@@ -237,7 +237,7 @@ const About = () => {
               >
                 <div className="flex items-center mb-4">
                   <div
-                    className={`p-3 rounded-full ${isDark ? "bg-red-500 bg-opacity-20" : "bg-red-100"
+                    className={`p-3 rounded-full ${isDark ? "bg-red-300 bg-opacity-20" : "bg-red-100"
                       }`}
                   >
                     <FaExchangeAlt className="text-red-400 text-xl" />
