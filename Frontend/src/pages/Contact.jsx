@@ -139,7 +139,7 @@ const Contact = () => {
           isDark ? "bg-black" : "bg-gray-50"
         }`}
       >
-        <Loader fullscreen size="xl" color="purple" text="Contact Us ..." />
+        {/* <Loader fullscreen size="xl" color="purple" text="Contact Us ..." /> */}
       </div>
     );
   }

@@ -47,6 +47,7 @@ import AiInsights from "./pages/AiInsights";
 
 // Components
 import ContributorsLeaderboard from "./components/ContributorsLeaderboard";
+import LoaderHandler from "./components/LoaderHandle.jsx";
 import CodeMetricsAnalyzer from "./components/CodeMetricsAnalyzer";
 
 // import Contact from "./pages/Contact";
@@ -114,49 +115,37 @@ function App() {
     <ThemeProvider>
       <Router>
         <ScrollToTop />
-        <Routes>
-
-          {/* All routes use Layout */}
-
-          <Route element={<Layout />}>
-            {/* Main pages */}
-            <Route path="/" element={<Home />} />
-            <Route path="/optimiser" element={<CodeOptimizer />} />
-            <Route path="/codegenerator" element={<CodeGenerator />} />
-            <Route path="/codecomplexity" element={<CodeComplexity />} />
-            <Route path="/codecompare" element={<CodeCompare />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contributors" element={<ContributorsLeaderboard />} />
-
-
-            {/* AiInsights */}
-            <Route path="/insights" element={<AiInsights />} />
-
-
-            {/* Code tools */}
-            <Route path="/code-tools" element={<CodeTools />} />
-            <Route path="/test-case-generator" element={<TestCaseGenerator />} />
-            <Route path="/code-beautifier" element={<CodeBeautifier />} />
-            <Route path="/error-debugger" element={<ErrorDebugger />} />
-            <Route path="/performance-analyzer" element={<PerformanceAnalyzer />} />
-            <Route path="/content-summarizer" element={<ContentSummarizer />} />
-            <Route path="/security-scanner" element={<SecurityScanner />} />
-            <Route path="/dependency-scanner" element={<DependencyScanner />} />
-
-            {/* Company pages */}
-            <Route path="/team" element={<Team />} />
-            <Route path="/contribute" element={<Contribute />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/feedback" element={<Feedback />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/contributor-guide" element={<ContributorGuide />} />
-            <Route path="/logo-showcase" element={<LogoShowcase />} />
-
-            {/* Catch-all 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
+        <LoaderHandler>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/optimiser" element={<CodeOptimizer />} />
+              <Route path="/codegenerator" element={<CodeGenerator />} />
+              <Route path="/codecomplexity" element={<CodeComplexity />} />
+              <Route path="/codecompare" element={<CodeCompare />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contributors" element={<ContributorsLeaderboard />} />
+              <Route path="/insights" element={<AiInsights />} />
+              <Route path="/code-tools" element={<CodeTools />} />
+              <Route path="/test-case-generator" element={<TestCaseGenerator />} />
+              <Route path="/code-beautifier" element={<CodeBeautifier />} />
+              <Route path="/error-debugger" element={<ErrorDebugger />} />
+              <Route path="/performance-analyzer" element={<PerformanceAnalyzer />} />
+              <Route path="/content-summarizer" element={<ContentSummarizer />} />
+              <Route path="/security-scanner" element={<SecurityScanner />} />
+              <Route path="/dependency-scanner" element={<DependencyScanner />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/contribute" element={<Contribute />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/feedback" element={<Feedback />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/contributor-guide" element={<ContributorGuide />} />
+              <Route path="/logo-showcase" element={<LogoShowcase />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </LoaderHandler>
       </Router>
     </ThemeProvider>
   );

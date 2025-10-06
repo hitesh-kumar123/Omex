@@ -85,7 +85,7 @@ const CodeCompare = () => {
   if (loading) {
     return (
       <div className={`min-h-screen flex items-center justify-center ${isDark ? 'bg-gray-800' : 'bg-gray-100'}`}>
-        <Loader fullscreen size="xl" color="purple" text="Loading Code Comparision Tool..." />
+        {/* <Loader fullscreen size="xl" color="purple" text="Loading Code Comparision Tool..." /> */}
       </div>
     );
   }

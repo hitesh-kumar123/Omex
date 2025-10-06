@@ -40,7 +40,7 @@ const Contribute = () => {
           isDark ? "bg-gray-800" : "bg-gray-100"
         }`}
       >
-        <Loader fullscreen size="xl" color="purple" text="Our Contributors..." />
+        {/* <Loader fullscreen size="xl" color="purple" text="Our Contributors..." /> */}
       </div>
     );
   }
