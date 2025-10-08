@@ -2,25 +2,23 @@ import {
   FaBug,
   FaChartLine,
   FaCode,
-  FaUsers,
-  FaUserFriends,
-  FaHandsHelping,
-  FaQuestionCircle,
-   FaShieldAlt,
-   FaFileContract,
   FaComment,
   FaEnvelope,
   FaGithub,
   FaHeart,
   FaLinkedin,
   FaDiscord, 
+  FaUsers,
+  FaUserFriends,
+  FaHandsHelping,
+  FaQuestionCircle,
+  FaShieldAlt,
+  FaFileContract,
 } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { useState } from "react";
-const linkBase = "hover:underline flex items-center space-x-2";
-const iconClass = "text-sm";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -28,10 +26,16 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   const [showToast, setShowToast] = useState(false);
 
+  // ✅ Replacing linkBase & iconClass with proper classes
+  const linkClass = isDark
+    ? "text-gray-400 hover:text-white transition-colors duration-200"
+    : "text-gray-600 hover:text-gray-900 transition-colors duration-200";
+
+  const iconClass = "mr-2 text-sm";
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const emailRegex =
-      /^(?!.*\.\.)(?!\.)(?!.*\.$)[A-Za-z0-9._%+-]{1,64}@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,10}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!email) {
       alert("Email is required");
@@ -47,10 +51,10 @@ const Footer = () => {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-
-  // Common classes for links
-  const linkBase = "text-sm transition-colors duration-200 hover:underline";
-  const iconClass = "mr-2 text-xs";
+  // Common styles for links/icons
+  const linkBase =
+    "transition-colors duration-200 hover:underline space-x-2 text-sm";
+  //const iconClass = "mr-2 text-xs";
 
   return (
     <>
@@ -85,11 +89,13 @@ const Footer = () => {
       >
         <div className="max-w-7xl mx-auto px-6">
           {/* Main Footer Content */}
-          <div className="pt-5 sm:pt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 md:gap-16">
+          <div className="pt-5 sm:pt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14 md:gap-16">
             {/* Brand Section */}
             <div className="space-y-6 flex flex-col items-start">
               <img
-                src={isDark ? "/omex-text-logo-white.svg" : "/omex-text-logo.svg"}
+                src={
+                  isDark ? "/omex-text-logo-white.svg" : "/omex-text-logo.svg"
+                }
                 alt="Omex AI Logo"
                 className="h-12 w-auto"
               />
@@ -104,10 +110,19 @@ const Footer = () => {
               </p>
               <div className="flex space-x-4">
                 {[
-                  { href: "https://github.com/Roshansuthar1105/Omex", icon: FaGithub },
+                  {
+                    href: "https://github.com/Roshansuthar1105/Omex",
+                    icon: FaGithub,
+                  },
                   { href: "https://twitter.com", icon: BsTwitterX },
-                  { href: "https://linkedin.com/in/roshansuthar", icon: FaLinkedin },
-                  { href: "https://discord.com/users/1317732270047498343", icon: FaDiscord },
+                  {
+                    href: "https://linkedin.com/in/roshansuthar",
+                    icon: FaLinkedin,
+                  },
+                  {
+                    href: "https://discord.com/users/1317732270047498343",
+                    icon: FaDiscord,
+                  },
                 ].map((social, i) => (
                   <a
                     key={i}
@@ -124,8 +139,8 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Company & Legal Section */}
-            <div className="flex flex-col space-y-4 sm:ml-20 sm:mr-20 mt-5 sm:mt-0">
+            {/* Company Section */}
+            <div className="flex flex-col space-y-4 sm:ml-10 mt-5 sm:mt-0">
               <h3
                 className={`text-lg font-semibold border-b pb-2 ${
                   isDark
@@ -133,18 +148,58 @@ const Footer = () => {
                     : "border-gray-300 text-gray-900"
                 }`}
               >
-                Company & Legal
+                Company
               </h3>
               <ul className="space-y-2">
                 {[
                   { to: "/about", icon: FaUsers, label: "About Us" },
                   { to: "/team", icon: FaUserFriends, label: "Our Team" },
-                  { to: "/contribute", icon: FaHandsHelping, label: "Contribute" },
+                  {
+                    to: "/contribute",
+                    icon: FaHandsHelping,
+                    label: "Contribute",
+                  },
                   { to: "/contact", icon: FaEnvelope, label: "Contact Us" },
                   { to: "/feedback", icon: FaComment, label: "Feedback" },
                   { to: "/faq", icon: FaQuestionCircle, label: "FAQ" },
-                  { to: "/privacy-policy", icon: FaShieldAlt, label: "Privacy Policy" },
-                  { to: "/terms-of-service", icon: FaFileContract, label: "Terms of Service" },
+                ].map((link, idx) => (
+                  <li key={idx}>
+                    <Link
+                      to={link.to}
+                      className={`flex items-center gap-2 text-sm transition-all duration-300 hover:text-indigo-500 ${
+                        isDark ? "text-gray-400" : "text-gray-700"
+                      }`}
+                    >
+                      <link.icon className="text-base" /> {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Legal Section */}
+            <div className="flex flex-col space-y-4 sm:ml-10 mt-5 sm:mt-0">
+              <h3
+                className={`text-lg font-semibold border-b pb-2 ${
+                  isDark
+                    ? "border-gray-700 text-gray-200"
+                    : "border-gray-300 text-gray-900"
+                }`}
+              >
+                Legal
+              </h3>
+              <ul className="space-y-2">
+                {[
+                  {
+                    to: "/privacy-policy",
+                    icon: FaShieldAlt,
+                    label: "Privacy Policy",
+                  },
+                  {
+                    to: "/terms-of-service",
+                    icon: FaFileContract,
+                    label: "Terms of Service",
+                  },
                 ].map((link, idx) => (
                   <li key={idx}>
                     <Link
@@ -164,15 +219,24 @@ const Footer = () => {
             <div className="flex flex-col space-y-4 mt-5 sm:mt-0">
               <h3
                 className={`text-lg font-semibold border-b pb-2 ${
-                  isDark ? "border-gray-700 text-gray-200" : "border-gray-300 text-gray-900"
+                  isDark
+                    ? "border-gray-700 text-gray-200"
+                    : "border-gray-300 text-gray-900"
                 }`}
               >
                 Stay Updated
               </h3>
-              <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+              <p
+                className={`text-sm ${
+                  isDark ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
                 Get the latest updates and features.
               </p>
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col sm:flex-row gap-3"
+              >
                 <input
                   type="email"
                   value={email}
@@ -195,8 +259,7 @@ const Footer = () => {
             </div>
           </div>
 
-
-          {/* Bottom Bar */}
+          {/* Footer Bottom */}
           <div
             className={`mt-6 py-6 flex flex-col items-center border-t ${
               isDark ? "border-gray-800" : "border-gray-200"
@@ -221,13 +284,12 @@ const Footer = () => {
               © {currentYear} OMEX. All rights reserved.
               <span className="flex items-center gap-1 text-[10px] text-gray-500 md:text-xs">
                 Made with{" "}
-                <FaHeart className="text-red-500 text-[10px] md:text-xs animate-pulse" /> by
-                OMEX Team
+                <FaHeart className="text-red-500 text-[10px] md:text-xs animate-pulse" />{" "}
+                by OMEX Team
               </span>
             </p>
           </div>
-        </div>
-
+        </div> 
         <div
         style={{
           boxShadow: isDark
@@ -495,7 +557,6 @@ const Footer = () => {
           </div>
         </div>
         </div>
-
       </footer>
     </>
   );
