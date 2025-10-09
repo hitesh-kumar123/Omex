@@ -172,7 +172,7 @@ const Team = () => {
           isDark ? "bg-gray-800" : "bg-gray-100"
         }`}
       >
-        <Loader fullscreen size="xl" color="purple" text="Our Team..." />
+        {/* <Loader fullscreen size="xl" color="purple" text="Our Team..." /> */}
       </div>
     );
   }

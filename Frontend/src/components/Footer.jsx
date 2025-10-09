@@ -2,6 +2,10 @@ import {
   FaBug,
   FaChartLine,
   FaCode,
+  FaHandsHelping,
+  FaQuestionCircle,
+   FaShieldAlt,
+   FaFileContract,
   FaComment,
   FaEnvelope,
   FaGithub,
@@ -10,10 +14,6 @@ import {
   FaDiscord,
   FaUsers,
   FaUserFriends,
-  FaHandsHelping,
-  FaQuestionCircle,
-  FaShieldAlt,
-  FaFileContract,
 } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -262,6 +262,9 @@ const Footer = () => {
             </p>
           </div>
         </div>
+
+ 
+
       </footer>
     </>
   );

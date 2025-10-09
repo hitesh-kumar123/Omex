@@ -191,12 +191,12 @@ export default function CodeTools() {
           isDark ? "bg-gray-800" : "bg-gray-100"
         }`}
       >
-        <Loader
+        {/* <Loader
           fullscreen
           size="xl"
           color="purple"
           text="Loading Dependency Scanner..."
-        />
+        /> */}
       </div>
     );
   }

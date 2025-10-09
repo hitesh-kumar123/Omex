@@ -131,8 +131,9 @@ function NavBar({ isMenuOpen, setIsMenuOpen }) {
       "/error-debugger",
       "/performance-analyzer",
       "/content-summarizer",
-      "/security-scanner",
-      "/dead-code-finder"
+      "/security-scanner", 
+      "/dependency-scanner", 
+      "/dead-code-finder" ,
     ];
     return toolsPaths.some((path) => location.pathname === path);
   };

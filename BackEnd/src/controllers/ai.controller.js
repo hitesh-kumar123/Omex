@@ -93,7 +93,8 @@ module.exports = {
   debugCode,
   analyzePerformance,
   analyzeSecurity,
-  scanDependencies,
+  scanDependencies, 
   codeMetricsAnalyzer, 
   explainCode,
 };
+

@@ -466,7 +466,7 @@ function Nav({ isMenuOpen, setIsMenuOpen }) {
                   } ${isDark ? "bg-white" : "bg-gray-800"}`}
                 ></span>
                 <span
-                  className={`block absolute h-0.5 w-5 ${
+                  className={`block absolute h-4 w-5 ${
                     isMenuOpen ? "opacity-0" : "opacity-100"
                   } ${
                     isDark ? "bg-white" : "bg-gray-800"

@@ -240,12 +240,12 @@ const TermsOfService = () => {
           isDark ? "bg-gray-900" : "bg-gray-50"
         }`}
       >
-        <Loader
+        {/* <Loader
           fullscreen
           size="xl"
           color="purple"
           text="Our Terms Of Service..."
-        />
+        /> */}
       </div>
     );
   }
