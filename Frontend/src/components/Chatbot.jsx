@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./css/Chatbot.css"; // your CSS file
 
-
 const FAQ = [
   {
-    triggers: ["hi", "hello", "hey", "good morning", "good afternoon", "good evening"],
+    triggers: [
+      "hi",
+      "hello",
+      "hey",
+      "good morning",
+      "good afternoon",
+      "good evening",
+    ],
     response: "Hello 👋! Welcome to <b>OMEX</b>. How can I help you today?",
   },
   {
@@ -17,7 +23,8 @@ const FAQ = [
   },
   {
     triggers: ["what is omex", "omex", "about omex"],
-    response: "🚀 <b>OMEX</b> is your AI co-pilot for coding!<br>It helps developers <b>optimize</b>, <b>generate</b> and <b>analyze</b> their code with confidence and speed.",
+    response:
+      "🚀 <b>OMEX</b> is your AI co-pilot for coding!<br>It helps developers <b>optimize</b>, <b>generate</b> and <b>analyze</b> their code with confidence and speed.",
   },
   {
     triggers: ["what tools do you offer", "tools", "omex tools", "features"],
@@ -41,23 +48,28 @@ Explore the Tools page for more!`,
   },
   {
     triggers: ["is omex free", "free", "pricing", "cost"],
-    response: "🎉 <b>OMEX offers a generous free tier</b> so you can explore essential features. For advanced use, Pro plans are available.",
+    response:
+      "🎉 <b>OMEX offers a generous free tier</b> so you can explore essential features. For advanced use, Pro plans are available.",
   },
   {
     triggers: ["do i need an account", "account", "signup", "register"],
-    response: "💡 <b>No account is needed to start!</b> You can use many tools immediately. Create a free account to save history and unlock more features.",
+    response:
+      "💡 <b>No account is needed to start!</b> You can use many tools immediately. Create a free account to save history and unlock more features.",
   },
   {
     triggers: ["what languages are supported", "languages", "coding languages"],
-    response: "🌐 <b>OMEX supports multiple languages:</b> Python, JavaScript, Java, C++ & C#, Ruby & PHP and more are being added!",
+    response:
+      "🌐 <b>OMEX supports multiple languages:</b> Python, JavaScript, Java, C++ & C#, Ruby & PHP and more are being added!",
   },
   {
     triggers: ["how can i get support", "support", "help", "contact"],
-    response: "💬 <b>Need help?</b> Visit our Contact page via the main menu or footer for support options.",
+    response:
+      "💬 <b>Need help?</b> Visit our Contact page via the main menu or footer for support options.",
   },
   {
     triggers: ["is my code secure", "security", "secure", "privacy"],
-    response: "🛡️ <b>Your code's security is top priority!</b> All data is encrypted. Code is processed securely and never shared unless you save it to your account.",
+    response:
+      "🛡️ <b>Your code's security is top priority!</b> All data is encrypted. Code is processed securely and never shared unless you save it to your account.",
   },
   {
     triggers: [],
@@ -79,7 +91,10 @@ const QUICK_QUESTIONS = [
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hello! I am Omex Assistant. How can I assist you today?" },
+    {
+      sender: "bot",
+      text: "Hello! I am Omex Assistant. How can I assist you today?",
+    },
   ]);
   const [input, setInput] = useState("");
   const [showFirstFour, setShowFirstFour] = useState(true);
@@ -133,15 +148,24 @@ const Chatbot = () => {
   };
 
   const renderQuickQuestions = () => {
-    const questionsToShow = showFirstFour ? QUICK_QUESTIONS.slice(0, 4) : QUICK_QUESTIONS.slice(4, 8);
+    const questionsToShow = showFirstFour
+      ? QUICK_QUESTIONS.slice(0, 4)
+      : QUICK_QUESTIONS.slice(4, 8);
     return (
       <>
         {questionsToShow.map((q, i) => (
-          <button key={i} className="quick-question-btn" onClick={() => sendMessage(q)}>
+          <button
+            key={i}
+            className="quick-question-btn"
+            onClick={() => sendMessage(q)}
+          >
             {q}
           </button>
         ))}
-        <button className="quick-question-btn toggle-btn" onClick={toggleQuickQuestions}>
+        <button
+          className="quick-question-btn toggle-btn"
+          onClick={toggleQuickQuestions}
+        >
           {showFirstFour ? "See More" : "See Less"}
         </button>
       </>
@@ -153,11 +177,11 @@ const Chatbot = () => {
       {isOpen && (
         <div className="chatbot-window open">
           <div className="chatbot-header">
-            <img 
-  src="public/omex-logo-white.svg" 
-  alt="Omex Logo" 
-  className="chatbot-header-logo" 
-/>
+            <img
+              src="/omex-logo-white.svg"
+              alt="Omex Logo"
+              className="chatbot-header-logo"
+            />
             <span>Omex</span>
             <button onClick={toggleChat}>
               <img
@@ -193,7 +217,7 @@ const Chatbot = () => {
       )}
 
       <button className="chatbot-toggle-btn" onClick={toggleChat}>
-        <img src="public/omex-logo-white.svg" alt="omexbutton" />
+        <img src="/omex-logo-white.svg" alt="omexbutton" />
       </button>
     </div>
   );

@@ -4,7 +4,7 @@
  */
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const systemInstructions = require("../config/systemInstructions").default;
+const systemInstructions = require("../config/systemInstructions");
 
 // Initialize Google Generative AI
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_KEY);
