@@ -14,7 +14,8 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import { GoPackageDependencies } from "react-icons/go";
-import { GrAnalytics } from "react-icons/gr";
+import { GrAnalytics } from "react-icons/gr"; 
+import { MdOutlineCleaningServices } from 'react-icons/md';
 import { useTheme } from "../context/ThemeContext";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -26,21 +27,24 @@ const ToolCard = forwardRef(
       <Link
         ref={ref}
         to={link}
-        className={`block p-6 rounded-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-xl ${isDark
+        className={`block p-6 rounded-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-xl ${
+          isDark
             ? "bg-gray-700 hover:bg-gray-600"
             : "bg-white hover:bg-gray-100 border border-gray-200"
-          }`}
+        }`}
       >
         <div className="flex items-center mb-4">
           <div
-            className={`p-3 rounded-full ${isDark ? "bg-blue-500 bg-opacity-20" : "bg-blue-100"
-              }`}
+            className={`p-3 rounded-full ${
+              isDark ? "bg-blue-500 bg-opacity-20" : "bg-blue-100"
+            }`}
           >
             {icon}
           </div>
           <h3
-            className={`ml-4 text-xl font-semibold ${isDark ? "text-white" : "text-gray-800"
-              }`}
+            className={`ml-4 text-xl font-semibold ${
+              isDark ? "text-white" : "text-gray-800"
+            }`}
           >
             {title}
           </h3>
@@ -64,7 +68,7 @@ export default function CodeTools() {
   const headerRef = useRef(null);
   const paragraphRef = useRef(null);
   const cardRefs = useRef([]);
- 
+
   const tools = [
     {
       icon: <FaVial className="text-blue-400 text-2xl" />,
@@ -122,6 +126,13 @@ export default function CodeTools() {
         "Analyze your codebase for various metrics like complexity, maintainability, and more.",
       link: "/code-metrics-analyzer",
     },
+    {
+      icon: <MdOutlineCleaningServices className="text-pink-400 text-2xl mr-2" />,
+      title: "Dead Code Finder",
+      description:
+        "The Dead Code Finder helps you keep your projects clean and maintainable by detecting unused code.",
+      link: "/dead-code-finder",
+    },
   ];
 
   useEffect(() => {
@@ -173,11 +184,12 @@ export default function CodeTools() {
     }
   }, [loading]);
 
- if (loading) {
+  if (loading) {
     return (
       <div
-        className={`min-h-screen flex items-center justify-center ${isDark ? "bg-gray-800" : "bg-gray-100"
-          }`}
+        className={`min-h-screen flex items-center justify-center ${
+          isDark ? "bg-gray-800" : "bg-gray-100"
+        }`}
       >
         {/* <Loader
           fullscreen
@@ -191,26 +203,29 @@ export default function CodeTools() {
 
   return (
     <div
-      className={`min-h-screen w-full ${isDark ? "bg-gray-800" : "bg-gray-100"
-        }`}
+      className={`min-h-screen w-full ${
+        isDark ? "bg-gray-800" : "bg-gray-100"
+      }`}
     >
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="mb-12 text-center">
-          <div className="inline-block p-3 rounded-full bg-blue-500 bg-opacity-20 mb-4">
+          <div className="inline-block p-3 rounded-full bg-blue-200 bg-opacity-20 mb-4">
             <FaTools className="text-blue-400 text-3xl" />
           </div>
           <h1
             ref={headerRef}
-            className={`text-4xl font-bold mb-4 ${isDark ? "text-white" : "text-gray-800"
-              }`}
+            className={`text-4xl font-bold mb-4 ${
+              isDark ? "text-white" : "text-gray-800"
+            }`}
           >
             OMEX Code Tools
           </h1>
           <p
             ref={paragraphRef}
-            className={`text-xl max-w-3xl mx-auto ${isDark ? "text-gray-300" : "text-gray-600"
-              }`}
+            className={`text-xl max-w-3xl mx-auto ${
+              isDark ? "text-gray-300" : "text-gray-600"
+            }`}
           >
             Powerful tools to enhance your coding experience and improve code
             quality
@@ -223,12 +238,15 @@ export default function CodeTools() {
             <a
               key={index}
               href={tool.link}
-              className="group relative p-6 rounded-2xl border 
+              className={`group relative p-6 rounded-2xl border 
                  transition-all duration-300 
-                 bg-white isDark:bg-gray-900 
-                 border-gray-200 isDark:border-gray-700 
+                ${
+                  isDark
+                    ? "bg-gray-700 hover:bg-gray-600"
+                    : "bg-white hover:bg-gray-100 border border-gray-200"
+                } 
                  hover:-translate-y-2 hover:scale-[1.02] 
-                 hover:shadow-2xl hover:border-transparent"
+                 hover:shadow-2xl hover:border-transparent`}
             >
               {/* Icon */}
               <div
@@ -243,10 +261,9 @@ export default function CodeTools() {
 
               {/* Title */}
               <h3
-                className="mt-6 text-lg font-semibold 
-                   text-gray-900 dark:text-gray-100 
+                className={`mt-6 text-lg font-semibold ${isDark ? 'text-gray-100' : 'text-gray-900'} 
                    transition-colors duration-300 
-                   group-hover:text-indigo-600 dark:group-hover:text-indigo-400"
+                   group-hover:text-indigo-600 dark:group-hover:text-indigo-400`}
               >
                 {tool.title}
               </h3>
@@ -269,9 +286,7 @@ export default function CodeTools() {
                    group-hover:text-indigo-700 dark:group-hover:text-indigo-300"
               >
                 Try it now
-                <span
-                  className="ml-2 transform transition-transform duration-300 group-hover:translate-x-1"
-                >
+                <span className="ml-2 transform transition-transform duration-300 group-hover:translate-x-1">
                   →
                 </span>
               </div>
@@ -279,16 +294,16 @@ export default function CodeTools() {
           ))}
         </div>
 
-
-
         {/* Coming Soon Section */}
         <div
-          className={`p-8 rounded-lg mb-12 ${isDark ? "bg-gray-700" : "bg-white border border-gray-200"
-            }`}
+          className={`mt-10 p-8 rounded-lg mb-12 ${
+            isDark ? "bg-gray-700" : "bg-white border border-gray-200"
+          }`}
         >
           <h2
-            className={`text-2xl font-bold mb-4 ${isDark ? "text-white" : "text-gray-800"
-              }`}
+            className={`text-2xl font-bold mb-4 ${
+              isDark ? "text-white" : "text-gray-800"
+            }`}
           >
             More Tools Coming Soon
           </h2>
@@ -297,8 +312,9 @@ export default function CodeTools() {
             Stay tuned for these upcoming features:
           </p>
           <ul
-            className={`grid grid-cols-1 md:grid-cols-2 gap-3 ${isDark ? "text-gray-300" : "text-gray-600"
-              }`}
+            className={`grid grid-cols-1 md:grid-cols-2 gap-3 ${
+              isDark ? "text-gray-300" : "text-gray-600"
+            }`}
           >
             <li className="flex items-center">
               <span className="mr-2 text-green-400">•</span> Code Refactoring
