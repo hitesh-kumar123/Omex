@@ -1,65 +1,83 @@
 import { useState, useEffect } from "react";
-import { FaShieldAlt, FaFileAlt, FaExclamationTriangle } from "react-icons/fa";
+import { MdOutlineCleaningServices } from "react-icons/md";
+import { FaCode, FaLightbulb } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Loader from "../components/Loader";
-import FeedbackButton from "../components/FeedbackButton";
-import { useTheme } from "../context/ThemeContext";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
-import { GoPackageDependencies } from "react-icons/go";
+import Loader from "../components/Loader";
+import FeedbackButton from "../components/FeedbackButton";
+import { useTheme } from "../context/ThemeContext";
 
-function DependencyScanner() {
-  const [fileContent, setFileContent] = useState(
-    `{
-  "name": "example-project",
-  "dependencies": {
-    "express": "^4.17.1",
-    "lodash": "4.17.19",
-    "react": "^18.0.0"
-  }
-}`
-  );
-  const [scannerResult, setScannerResult] = useState("");
+function DeadCodeFinder() {
+  const exampleCodes = {
+    JavaScript: `function demo() {
+  let used = 10;
+  let unused = 20; 
+  return used;
+}`,
+    TypeScript: `function demo(): number {
+  let active = 42;
+  let neverUsed = 99; 
+  return active;
+}`,
+    CSS: `.used-class { color: red; }
+.unused-class { color: blue; }  `,
+  };
+
+  const [code, setCode] = useState(exampleCodes["JavaScript"]);
+  const [language, setLanguage] = useState("JavaScript");
+  const [results, setResults] = useState("");
   const [loading, setLoading] = useState(true);
-  const [scanning, setScanning] = useState(false);
-
   const { isDark } = useTheme();
 
-  const scanDependencies = async () => {
-    if (!fileContent.trim()) {
-      toast.error("Please paste your package.json or requirements.txt");
+  const languages = ["JavaScript", "TypeScript", "CSS"];
+
+  const findDeadCode = async () => {
+    if (!code.trim()) {
+      toast.error("Please enter some code first");
       return;
     }
 
-    setScanning(true);
+    setLoading(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/ai/dependency-scanner`,
-        {
-          fileContent, // must match controller
-        }
+        `${import.meta.env.VITE_BACKEND_URL}/scan-deadcode`,
+        { code, language } // send as JSON
       );
 
-      setScannerResult(response.data);
-      toast.success("Dependencies scanned successfully!");
+      console.log("🔍 Dead code response:", response.data);
+      const data = response.data;
+      if (response.data.deadCode && response.data.deadCode.length > 0) {
+        const formatted = response.data.deadCode
+          .map((item) => `Line ${item.line}: ${item.text}`)
+          .join("\n");
+
+        setResults(formatted);
+      } else {
+        setResults("✅ No dead code found!");
+      }
+      toast.success("Dead code analysis completed!");
     } catch (error) {
-      console.error("Error scanning dependencies:", error);
-      toast.error("Failed to scan dependencies. Please try again.");
+      console.error(
+        "❌ Error scanning dead code:",
+        error.response?.data || error.message
+      );
+      toast.error("Failed to scan dead code. Please try again.");
     } finally {
-      setScanning(false);
+      setLoading(false);
     }
   };
 
   const handleCopyResults = () => {
-    navigator.clipboard.writeText(scannerResult);
-    toast.success("Scan results copied to clipboard!");
+    navigator.clipboard.writeText(results);
+    toast.success("Results copied to clipboard!");
   };
 
   const handleClearAll = () => {
-    setFileContent("");
-    setScannerResult("");
+    setCode("");
+    setResults("");
     toast.success("All cleared!");
   };
 
@@ -67,7 +85,7 @@ function DependencyScanner() {
     const timer = setTimeout(() => {
       setLoading(false);
       window.scrollTo(0, 0);
-    }, 1200);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -78,12 +96,12 @@ function DependencyScanner() {
           isDark ? "bg-gray-800" : "bg-gray-100"
         }`}
       >
-        {/* <Loader
+        <Loader
           fullscreen
           size="xl"
-          color="purple"
-          text="Loading Dependency Scanner..."
-        /> */}
+          color="pink"
+          text="Loading Dead Code Finder..."
+        />
       </div>
     );
   }
@@ -95,32 +113,31 @@ function DependencyScanner() {
       }`}
     >
       <div className="container mx-auto px-4 py-8">
-        {/* Header */}
+        {/* Header Section */}
         <div className="mb-6">
           <div className="flex flex-col md:flex-row justify-between items-center mb-4">
             <div className="flex items-center mb-4 md:mb-0">
-              <GoPackageDependencies className="text-orange-500 text-2xl mr-2" />
+              <MdOutlineCleaningServices className="text-pink-400 text-2xl mr-2" />
               <h1
                 className={`text-2xl md:text-3xl font-bold ${
                   isDark ? "text-white" : "text-gray-800"
                 }`}
               >
-                Dependency Scanner
+                Dead Code Finder
               </h1>
             </div>
           </div>
           <p
             className={`text-lg ${isDark ? "text-gray-300" : "text-gray-600"}`}
           >
-            Paste your <code>package.json</code> or{" "}
-            <code>requirements.txt</code> to detect outdated or vulnerable
-            dependencies.
+            Detect and clean up unused variables, functions, and CSS selectors
+            in your codebase.
           </p>
         </div>
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Input Section */}
+          {/* Code Input Section */}
           <div
             className={`p-4 rounded-lg ${
               isDark ? "bg-gray-700" : "bg-white border border-gray-200"
@@ -132,8 +149,26 @@ function DependencyScanner() {
                   isDark ? "text-white" : "text-gray-800"
                 }`}
               >
-                <FaFileAlt className="inline mr-2" /> Dependency File Content
+                <FaCode className="inline mr-2" /> Your Code
               </h2>
+              <select
+                value={language}
+                onChange={(e) => {
+                  setLanguage(e.target.value);
+                  setCode(exampleCodes[e.target.value] || "");
+                }}
+                className={`px-3 py-1 rounded ${
+                  isDark
+                    ? "bg-gray-800 text-white border-gray-600"
+                    : "bg-gray-100 text-gray-800 border-gray-300"
+                } border`}
+              >
+                {languages.map((lang) => (
+                  <option key={lang} value={lang}>
+                    {lang}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div
@@ -142,37 +177,37 @@ function DependencyScanner() {
               } rounded-lg overflow-hidden mb-4`}
             >
               <textarea
-                value={fileContent}
-                onChange={(e) => setFileContent(e.target.value)}
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
                 className={`w-full h-64 p-4 font-mono text-sm ${
                   isDark ? "bg-gray-800 text-white" : "bg-gray-50 text-gray-800"
                 }`}
-                placeholder="Paste your package.json or requirements.txt content here..."
+                placeholder="Paste your code here..."
               />
             </div>
 
             <div className="flex justify-between">
               <button
                 onClick={handleClearAll}
-                className={`px-4 py-2 rounded ${
+                className={`px-4 py-3 rounded flex items-center justify-center ${
                   isDark
                     ? "bg-gray-600 hover:bg-gray-500"
                     : "bg-gray-200 hover:bg-gray-300"
-                } transition-colors`}
+                } transition-all`}
               >
                 Clear All
               </button>
               <button
-                onClick={scanDependencies}
+                onClick={findDeadCode}
                 disabled={loading}
-                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded transition-colors flex items-center"
+                className="px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded transition-colors flex items-center"
               >
-                {loading ? <Loader size="small" /> : "Scan Dependencies"}
+                {loading ? <Loader size="small" /> : "Find Dead Code"}
               </button>
             </div>
           </div>
 
-          {/* Results Section */}
+          {/* Results Output Section */}
           <div
             className={`p-4 rounded-lg ${
               isDark ? "bg-gray-700" : "bg-white border border-gray-200"
@@ -184,9 +219,9 @@ function DependencyScanner() {
                   isDark ? "text-white" : "text-gray-800"
                 }`}
               >
-                <FaExclamationTriangle className="inline mr-2" /> Scan Results
+                <FaLightbulb className="inline mr-2" /> Dead Code Results
               </h2>
-              {scannerResult && (
+              {results && (
                 <button
                   onClick={handleCopyResults}
                   className={`px-3 py-1 rounded ${
@@ -195,7 +230,7 @@ function DependencyScanner() {
                       : "bg-gray-200 hover:bg-gray-300"
                   } transition-colors text-sm`}
                 >
-                  Copy Results
+                  Copy to Clipboard
                 </button>
               )}
             </div>
@@ -206,11 +241,11 @@ function DependencyScanner() {
               } rounded-lg overflow-hidden`}
               style={{ height: "500px" }}
             >
-              {scanning ? (
+              {loading ? (
                 <div className="flex justify-center items-center h-full">
                   <Loader />
                 </div>
-              ) : scannerResult ? (
+              ) : results ? (
                 <div
                   className={`h-full overflow-y-auto p-4 ${
                     isDark ? "bg-gray-800" : "bg-gray-50"
@@ -220,7 +255,7 @@ function DependencyScanner() {
                     rehypePlugins={[rehypeHighlight]}
                     className={isDark ? "text-white" : "text-gray-800"}
                   >
-                    {scannerResult}
+                    {results}
                   </Markdown>
                 </div>
               ) : (
@@ -229,11 +264,10 @@ function DependencyScanner() {
                     isDark ? "text-gray-400" : "text-gray-500"
                   }`}
                 >
-                  <GoPackageDependencies className="text-4xl mb-4 opacity-50" />
+                  <MdOutlineCleaningServices className="text-4xl mb-4 opacity-50" />
                   <p className="text-center">
-                    Paste your dependencies file content and click{" "}
-                    <b>Scan Dependencies</b> to get security & update
-                    suggestions.
+                    Paste your code and click "Find Dead Code" to detect unused
+                    variables or selectors.
                   </p>
                 </div>
               )}
@@ -241,11 +275,11 @@ function DependencyScanner() {
           </div>
         </div>
       </div>
-      
+
       {/* Feedback Button */}
-      <FeedbackButton toolName="Dependency Scanner" />
+      <FeedbackButton toolName="Dead Code Finder" />
     </div>
   );
 }
 
-export default DependencyScanner;
+export default DeadCodeFinder;
